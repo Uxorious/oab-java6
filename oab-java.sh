@@ -470,6 +470,9 @@ cd ${WORK_PATH}/ >> "$log" 2>&1
 git clone -b ${TAG} ${WORK_PATH}/srcs/${JAVA_UPSTREAM}.git src >> "$log" 2>&1 &
 pid=$!;progress $pid
 
+# Change prepare.sh to not download the files as we will do it here.
+sed -i '/^make.*get-orig-source$/d' src/prepare.sh
+
 # Cet the current Debian package version and package urgency
 DEB_VERSION=`head -n1 ${WORK_PATH}/src/debian/changelog | cut -d'(' -f2 | cut -d')' -f1 | cut -d'~' -f1`
 DEB_URGENCY=`head -n1 ${WORK_PATH}/src/debian/changelog | cut -d'=' -f2`
