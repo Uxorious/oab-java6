@@ -659,10 +659,10 @@ echo "Date: `date -R`"                    >> Release
 echo "Architectures: ${LSB_ARCH}"         >> Release
 echo "Components: restricted"             >> Release
 echo "Description: Local Java Repository" >> Release
-echo "MD5Sum:"                            >> Release
+echo "SHA512:"                            >> Release
 for PACKAGE in Packages*
 do
-    printf ' '`md5sum ${PACKAGE} | cut -d' ' -f1`" %16d ${PACKAGE}\n" `wc --bytes ${PACKAGE} | cut -d' ' -f1` >> Release
+    printf ' '`sha512sum ${PACKAGE} | cut -d' ' -f1`" %16d ${PACKAGE}\n" `wc --bytes ${PACKAGE} | cut -d' ' -f1` >> Release
 done
 cecho success
 
