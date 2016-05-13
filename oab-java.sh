@@ -714,7 +714,7 @@ if [ -n "${BUILD_KEY}" ] || [ -e ${WORK_PATH}/gpg/pubring.gpg ] && [ -e ${WORK_P
     else
         GPG_OPTION=(--homedir ${WORK_PATH}/gpg)
     fi
-    gpg "${GPG_OPTION[@]}" --armor --detach-sign --output ${WORK_PATH}/deb/Release.gpg ${WORK_PATH}/deb/Release >> "$log" 2>&1 &
+    gpg "${GPG_OPTION[@]}" --digest-algo SHA512 --armor --detach-sign --output ${WORK_PATH}/deb/Release.gpg ${WORK_PATH}/deb/Release >> "$log" 2>&1 &
     pid=$!;progress $pid
 
     if [ -z "${BUILD_KEY}" ] ; then
